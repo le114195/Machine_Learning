@@ -148,20 +148,11 @@ void writeValue(vector<int> &v,string filePath)
    	FILE *pfile=fopen("result.txt","wb");
 
 	vector<int>::iterator iter=v.begin();
-	char *c=new char[2];
 	for(;iter!=v.end();++iter)
 	{
-		
-	    c[1]='\n';
-		
-		if(*iter==0)
-		   c[0]='0';
-		else
-			c[0]='1';
-       fwrite(c,1,2,pfile);
+        fprintf(pfile, "%d\n", *iter);
 	}
 	fclose(pfile);
-    delete c;
 }
 bool getRealValue()
 {
@@ -208,10 +199,10 @@ int main()
 	
 	cout<<"请稍等待..."<<endl;
 	t1=clock();
-	train("ticdata20161201.txt");   //训练
+	train("ticdata1.txt");   //训练
     t2=clock();
 	
-    predict("predict.txt");        //预测
+    predict("predict1.txt");        //预测
 	t3=clock();
 	writeValue(predictvalue,"result.txt");  //将预测值写入到文件
 	double accuracy=getAccuracy();          //得到正确率
